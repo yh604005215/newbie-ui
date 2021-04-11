@@ -14,6 +14,9 @@ export default defineConfig({
   // Because of using GitHub Pages
   base: `/${repo}/`,
   publicPath: `/${repo}/`,
+  resolve: {
+    includes: ['docs', 'packages'],
+  },
   navs: [
     null,
     {
