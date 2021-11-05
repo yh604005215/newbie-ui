@@ -10,8 +10,8 @@
     "baseUrl": "./",
     "strict": true,
     "paths": {
-      "@/*": ["packages/*"],
-      "@@/*": ["packages/.umi/*"]
+      "@/*": ["src/*"],
+      "@@/*": ["src/.umi/*"]
     },
     "allowSyntheticDefaultImports": true
   },
@@ -23,7 +23,7 @@
     "typings",
     "**/__test__",
     "test",
-    "tests",
-    "docs"
+    "docs",
+    "tests"
   ]
 }
