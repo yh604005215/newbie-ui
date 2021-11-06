@@ -1,0 +1,49 @@
+@import '../../style/color.less';
+@import '../../style/global.less';
+
+@btn-prefix: ~'@{newbie-prefix}-btn';
+
+@lg-height: 44px;
+@lg-padding: 0 25px;
+
+@default-heigth: 38px;
+@default-padding: 0 18px;
+@default-bgColor: @green-base;
+
+@sm-height: 30px;
+@sm-padding: 0 10px;
+
+@xs-height: 22px;
+@xs-padding: 0 5px;
+
+.@{btn-prefix} {
+  border: 1px solid transparent;
+  &.default {
+    height: @default-heigth;
+    line-height: @default-heigth;
+    padding: @default-padding;
+    background-color: @default-bgColor;
+  }
+
+  &.lg {
+    height: @lg-height;
+    line-height: @lg-height;
+    padding: @lg-padding;
+  }
+
+  &.sm {
+    height: @sm-height;
+    line-height: @sm-height;
+    padding: @sm-padding;
+  }
+
+  .xs {
+    height: @xs-height;
+    line-height: @xs-height;
+    padding: @xs-padding;
+  }
+
+  .radius {
+    border-radius: 100px;
+  }
+}
