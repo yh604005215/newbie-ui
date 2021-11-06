@@ -2,15 +2,22 @@
  * @Autor: Yhao
  * @Date: 2021-11-06 01:12:33
  * @LastEditors: Yhao
- * @LastEditTime: 2021-11-06 01:18:08
+ * @LastEditTime: 2021-11-06 23:08:54
  * @Description:
  */
 import { createContext, useContext } from 'react';
+import { SizeType } from './sizeContext';
 
-const content = createContext({});
+interface IContext {
+  buttonSize: SizeType
+}
 
-export const GlobalProvider = content.Provider;
+const context = createContext<IContext>({
+  buttonSize: 'default'
+});
 
-export const GlobalConsumer = content.Consumer;
+export const GlobalProvider = context.Provider;
 
-export const uesGlobal = () => useContext(content);
+export const GlobalConsumer = context.Consumer;
+
+export const uesGlobal = () => useContext(context) || {};

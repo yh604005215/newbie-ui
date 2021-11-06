@@ -2,7 +2,7 @@
  * @Autor: Yhao
  * @Date: 2021-11-06 00:41:49
  * @LastEditors: Yhao
- * @LastEditTime: 2021-11-06 01:05:02
+ * @LastEditTime: 2021-11-06 22:56:46
  * @Description: ts 工具
  */
 
@@ -39,3 +39,5 @@ export type Extract<T, U> = T extends U ? T : never;
 
 // 主要用于剔除interface中的部分属性
 export type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>;
+
+export const tuple = <T extends string[]>(...args: T) => args;
