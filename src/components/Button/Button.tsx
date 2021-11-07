@@ -2,17 +2,18 @@
  * @Autor: Yhao
  * @Date: 2021-11-06 01:19:16
  * @LastEditors: Yhao
- * @LastEditTime: 2021-11-07 00:56:54
+ * @LastEditTime: 2021-11-07 23:23:52
  * @Description:
  */
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useMemo } from 'react';
 import { IButtonProps } from './interface';
-import { uesGlobal } from '@/globalContext/index';
+import { useButtonContext } from './context';
 import classNames from 'classnames';
 import styles from './Button.less';
 
-const Button = forwardRef<any, IButtonProps>((props) => {
+const Button = forwardRef<unknown, IButtonProps>((props, ref) => {
   const {
+    ghost = false,
     type = 'default',
     size,
     icon,
@@ -23,12 +24,27 @@ const Button = forwardRef<any, IButtonProps>((props) => {
     className,
     ...rest
   } = props;
-  const { buttonSize = 'default' } = uesGlobal();
+  const context = useButtonContext();
+
+  const classs = useMemo<string>(() => {
+    return classNames(
+      {
+        [styles.button]: true,
+        [styles.ghost]: ghost,
+        [styles.radius]: radius || context.radius,
+        [styles.disabled]: disabled,
+        [styles.block]: block,
+      },
+      !type || type === 'default' ? null : styles[type],
+      styles[size || context.size || 'default'],
+      className,
+    );
+  }, [type, context, size, block, radius, ghost, className]);
 
   console.log(styles);
 
   return (
-    <button className={classNames(styles.btn)} {...rest}>
+    <button className={classs} {...rest} ref={ref as any}>
       {icon}
       {children}
     </button>

@@ -1,14 +1,16 @@
 @import '../../style/color.less';
 @import '../../style/global.less';
 
-@btn-prefix: ~'@{newbie-prefix}-btn';
-
 @lg-height: 44px;
 @lg-padding: 0 25px;
 
 @default-heigth: 38px;
 @default-padding: 0 18px;
-@default-bgColor: @green-base;
+
+@primary-color: @green-base;
+@normal-color: @bule-base;
+@warm-color: @orange-base;
+@danger-color: @red-base;
 
 @sm-height: 30px;
 @sm-padding: 0 10px;
@@ -16,13 +18,61 @@
 @xs-height: 22px;
 @xs-padding: 0 5px;
 
-.@{btn-prefix} {
-  border: 1px solid transparent;
+@disabled-bdColor: @neutral-color-3;
+@disabled-color: @neutral-color-6;
+
+#setGhost(@color) {
+  &.ghost {
+    background-color: transparent;
+    color: @color;
+  }
+}
+
+#setColor(@color, @font-color) {
+  background-color: @color;
+  border-color: @color;
+  color: @font-color;
+  &:hover {
+    border-color: @color;
+  }
+  #setGhost(@color);
+}
+
+.button {
+  border: 1px solid @neutral-color-6;
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 2px;
+  color: @font-color;
+  &:hover {
+    opacity: 0.8;
+    border-color: @primary-color;
+  }
+
+  &:active {
+    opacity: 1;
+  }
+
+  &.primary {
+    #setColor(@primary-color, @font-color-1);
+  }
+
+  &.normal {
+    #setColor(@normal-color, @font-color-1);
+  }
+
+  &.warm {
+    #setColor(@warm-color, @font-color-1);
+  }
+
+  &.danger {
+    #setColor(@danger-color, @font-color-1);
+  }
+
   &.default {
     height: @default-heigth;
     line-height: @default-heigth;
     padding: @default-padding;
-    background-color: @default-bgColor;
   }
 
   &.lg {
@@ -37,13 +87,30 @@
     padding: @sm-padding;
   }
 
-  .xs {
+  &.xs {
     height: @xs-height;
     line-height: @xs-height;
     padding: @xs-padding;
   }
 
-  .radius {
+  &.radius {
     border-radius: 100px;
+  }
+
+  &.block {
+    width: 100%;
+    text-align: center;
+    display: block;
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    border-color: @disabled-bdColor;
+    background-color: @disabled-bgColor;
+    color: @disabled-color;
+    &:hover {
+      opacity: 1;
+      border-color: @disabled-bdColor;
+    }
   }
 }

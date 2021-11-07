@@ -2,7 +2,7 @@
  * @Autor: Yhao
  * @Date: 2021-11-06 00:35:06
  * @LastEditors: Yhao
- * @LastEditTime: 2021-11-07 20:46:08
+ * @LastEditTime: 2021-11-07 21:21:01
  * @Description:
  */
 import { defineConfig } from 'dumi';
@@ -32,7 +32,7 @@ export default defineConfig({
             .map((a) => a.replace(/([A-Z])/g, '-$1'))
             .map((a) => a.toLowerCase())
             .filter((a) => a && a !== 'components');
-          return `${localName}-${[...new Set(arr)].join('-')}`.replace(
+          return `newbie-${localName}-${[...new Set(arr)].join('-')}`.replace(
             /--/g,
             '-',
           );
