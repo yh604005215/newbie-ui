@@ -2,7 +2,7 @@
  * @Autor: Yhao
  * @Date: 2021-11-06 01:19:16
  * @LastEditors: Yhao
- * @LastEditTime: 2021-11-07 23:23:52
+ * @LastEditTime: 2021-11-07 23:36:43
  * @Description:
  */
 import React, { forwardRef, useMemo } from 'react';
@@ -22,6 +22,7 @@ const Button = forwardRef<unknown, IButtonProps>((props, ref) => {
     radius,
     children,
     className,
+    loading,
     ...rest
   } = props;
   const context = useButtonContext();
@@ -41,10 +42,21 @@ const Button = forwardRef<unknown, IButtonProps>((props, ref) => {
     );
   }, [type, context, size, block, radius, ghost, className]);
 
-  console.log(styles);
+  const handleClick = (
+    e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement, MouseEvent>,
+  ) => {
+    const { onClick, disabled } = props;
+    if (loading || disabled) {
+      e.preventDefault();
+      return;
+    }
+    (
+      onClick as React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>
+    )?.(e);
+  };
 
   return (
-    <button className={classs} {...rest} ref={ref as any}>
+    <button {...rest} className={classs} onClick={handleClick} ref={ref as any}>
       {icon}
       {children}
     </button>
